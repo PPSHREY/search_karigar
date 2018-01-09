@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <item android:id="@+id/action_search"
+            android:title="Search"
+            app:itemTextColor="#FFFFFF"
+            app:showAsAction="always|withText"
+            android:icon="@drawable/search" />
+        <item android:id="@+id/action_orders"
+            app:itemTextColor="#FFFFFF"
+            android:title="Orders"
+            app:showAsAction="always|withText"
+            android:icon="@drawable/orders" />
+        <item android:id="@+id/action_messages"
+            android:title="Messages"
+            app:itemTextColor="#FFFFFF"
+            app:showAsAction="always|withText"
+            android:icon="@drawable/message" />
+    <item android:id="@+id/action_profile"
+        app:itemTextColor="#FFFFFF"
+        android:title="Profile"
+        app:showAsAction="always|withText"
+        android:icon="@drawable/profile" />
+</menu>

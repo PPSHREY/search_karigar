@@ -1,0 +1,293 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#efeeee"
+    tools:context="com.scoutlabour.fragment.ProfileFragment">
+
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:background="#fff"
+            android:padding="8dp"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <com.scoutlabour.custom.NormalTextView
+                android:id="@+id/txtFullName"
+                android:textSize="22sp"
+                android:text=""
+                android:textStyle="bold"
+                android:textColor="#000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <com.scoutlabour.custom.NormalTextView
+                android:id="@+id/txtEmail"
+                android:textSize="14sp"
+                android:text=""
+                android:textColor="#000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <com.scoutlabour.custom.NormalTextView
+                android:id="@+id/txtMobileNumber"
+                android:textSize="14sp"
+                android:text=""
+                android:textColor="#000"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:id="@+id/llMyAddress"
+                android:gravity="center"
+                android:padding="12dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:src="@drawable/my_address"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+                <com.scoutlabour.custom.NormalTextView
+                    android:layout_marginLeft="14dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:textColor="#000"
+                    android:textAllCaps="false"
+                    android:text="My Addresses"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@drawable/right_arrow"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:id="@+id/llChangePassword"
+                android:clickable="true"
+                android:gravity="center"
+                android:padding="12dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:src="@drawable/password"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+                <com.scoutlabour.custom.NormalTextView
+                    android:layout_marginLeft="14dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:textColor="#000"
+                    android:textAllCaps="false"
+                    android:text="Change Password"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@drawable/right_arrow"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:id="@+id/llContactUs"
+                android:gravity="center"
+                android:padding="12dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:src="@drawable/contact_us"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+                <com.scoutlabour.custom.NormalTextView
+                    android:layout_marginLeft="14dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:textColor="#000"
+                    android:textAllCaps="false"
+                    android:text="Contact Us"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@drawable/right_arrow"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:id="@+id/llAboutUs"
+                android:gravity="center"
+                android:padding="12dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:src="@drawable/about_us"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+                <com.scoutlabour.custom.NormalTextView
+                    android:layout_marginLeft="14dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:textColor="#000"
+                    android:textAllCaps="false"
+                    android:text="About Us"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@drawable/right_arrow"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:id="@+id/llShareApp"
+                android:gravity="center"
+                android:padding="12dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <ImageView
+                    android:src="@drawable/share_app"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp" />
+                <com.scoutlabour.custom.NormalTextView
+                    android:layout_marginLeft="14dp"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:textColor="#000"
+                    android:textAllCaps="false"
+                    android:text="Share App"
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ImageView
+                    android:src="@drawable/right_arrow"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_marginTop="1dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:id="@+id/llRateApp"
+            android:gravity="center"
+            android:padding="12dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:src="@drawable/rate_app"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <com.scoutlabour.custom.NormalTextView
+                android:layout_marginLeft="14dp"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:textColor="#000"
+                android:textAllCaps="false"
+                android:text="Rate App"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ImageView
+                android:src="@drawable/right_arrow"
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+
+
+        </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_marginTop="8dp"
+                android:background="#fff"
+                android:clickable="true"
+                android:id="@+id/llLogOut"
+            android:gravity="center"
+            android:padding="12dp"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <ImageView
+                android:src="@drawable/logout"
+                android:layout_width="25dp"
+                android:layout_height="25dp" />
+            <com.scoutlabour.custom.NormalTextView
+                android:layout_marginLeft="14dp"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:textColor="#000"
+                android:textAllCaps="false"
+                android:text="Logout"
+                android:layout_weight="1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+
+        </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+
+    tools:context="com.scoutlabour.activities.RegistrationActivity">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/app_bar" />
+
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <com.scoutlabour.custom.NormalEditTextView
+                android:id="@+id/etFullName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+                android:paddingTop="@dimen/edt_padding_top_12dp"
+                android:paddingLeft="@dimen/edt_padding_left_10dp"
+                android:paddingRight="@dimen/edt_padding_right_10dp"
+                android:background="@drawable/border_gray_top"
+                android:gravity="left"
+                android:hint="Full Name"
+                android:inputType="text"
+                android:maxLines="1"
+                android:minLines="1"
+                android:textColor="#000"
+                android:textColorHint="#9C9C9C"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_marginTop="-1dp"
+                android:background="@drawable/border_gray_middle"
+                android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+                android:paddingTop="@dimen/edt_padding_top_12dp"
+                android:paddingLeft="@dimen/edt_padding_left_10dp"
+                android:paddingRight="@dimen/edt_padding_right_10dp"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.scoutlabour.custom.NormalTextView
+                    android:textSize="16sp"
+                    android:textColor="#9C9C9C"
+                    android:textAllCaps="false"
+                    android:text="+91-"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <com.scoutlabour.custom.NormalEditTextView
+                    android:id="@+id/etMobileNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_back"
+                    android:gravity="left"
+                    android:hint="Mobile Number"
+                    android:inputType="number"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:textColor="#000"
+                    android:textColorHint="#9C9C9C"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <com.scoutlabour.custom.NormalEditTextView
+                android:id="@+id/etEmailAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-1dp"
+                android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+                android:paddingTop="@dimen/edt_padding_top_12dp"
+                android:paddingLeft="@dimen/edt_padding_left_10dp"
+                android:paddingRight="@dimen/edt_padding_right_10dp"
+                android:background="@drawable/border_gray_middle"
+                android:gravity="left"
+                android:hint="Email"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:minLines="1"
+                android:textColor="#000"
+                android:textColorHint="#9C9C9C"
+                android:textSize="16sp" />
+
+
+            <com.scoutlabour.custom.NormalEditTextView
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-1dp"
+                android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+                android:paddingTop="@dimen/edt_padding_top_12dp"
+                android:paddingLeft="@dimen/edt_padding_left_10dp"
+                android:paddingRight="@dimen/edt_padding_right_10dp"
+
+                android:background="@drawable/border_gray_middle"
+                android:gravity="left"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:minLines="1"
+                android:textColor="#000"
+                android:textColorHint="#9C9C9C"
+                android:textSize="16sp" />
+
+
+
+            <com.scoutlabour.custom.NormalEditTextView
+                android:id="@+id/etConfirmPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-1dp"
+                android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+                android:paddingTop="@dimen/edt_padding_top_12dp"
+                android:paddingLeft="@dimen/edt_padding_left_10dp"
+                android:paddingRight="@dimen/edt_padding_right_10dp"
+                android:background="@drawable/border_gray_bottom"
+                android:gravity="left"
+                android:hint="Confirm Password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:minLines="1"
+                android:textColor="#000"
+                android:textColorHint="#9C9C9C"
+                android:textSize="16sp" />
+
+
+
+                <LinearLayout
+                    android:layout_marginTop="20dp"
+                    android:clickable="true"
+                    android:id="@+id/llRegister"
+                    android:padding="14dp"
+                    android:background="#000000"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.scoutlabour.custom.NormalTextView
+                        android:textSize="20sp"
+                        android:layout_gravity="center"
+                        android:background="#000000"
+                        android:textColor="#ffffff"
+                        android:textAllCaps="true"
+                        android:text="Register"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <ImageView
+                        android:layout_marginLeft="6dp"
+                        android:padding="2dp"
+                        android:src="@drawable/arrows"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp" />
+
+
+            </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+    <View
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#ffe0e0e0" />
+    <LinearLayout
+        android:layout_marginBottom="8dp"
+        android:id="@+id/llSignIn"
+        android:clickable="true"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.scoutlabour.custom.NormalTextView
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:textAllCaps="false"
+            android:text="Already have an account?"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="#000"
+            android:textAllCaps="false"
+            android:text=" Sign In"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</LinearLayout>
+</LinearLayout>
+

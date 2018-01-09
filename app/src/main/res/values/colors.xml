@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ff000000</color>
+    <color name="colorPrimaryDark">#ff000000</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="grey_border_light">#ffe0e0e0</color>
+    <color name="white">#ffffffff</color>
+    <color name="cb_grey">#ffe9e7e7</color>
+    <color name="blue_bold">#ff304ffe</color>
+    <color name="outside_day">#ffedf2f5</color>
+    <color name="primaryDark">#ff000000</color>
+    <color name="primary">@color/primary_new</color>
+    <color name="button_pressed">#ff1c8f78</color>
+    <color name="primary_new">#ff000000</color>
+    <color name="transparent">#00000000</color>
+    <color name="grey_txt">#ff666666</color>
+    <color name="darkGray">#A9A9A9</color>
+    <color name="black">#000000</color>
+    <color name="lightGray">#f4f4f4</color>
+    <color name="bg_lightgray">#efeeee</color>
+    <color name="blue">#000099</color>
+</resources>

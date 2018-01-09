@@ -1,0 +1,102 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:orientation="vertical"
+android:background="@color/bg_lightgray"
+tools:context="com.scoutlabour.fragment.OrdersInProgressFragment">
+
+
+
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/orders" />
+
+        <com.scoutlabour.custom.NormalTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="No active Orders"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <com.scoutlabour.custom.NormalTextView
+            android:layout_marginTop="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="You can start a new order by placing a request now"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="normal" />
+        <LinearLayout
+            android:layout_marginTop="15dp"
+            android:id="@+id/llAddAddress"
+            android:clickable="true"
+            android:padding="8dp"
+            android:gravity="center"
+            android:background="#000000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <com.scoutlabour.custom.NormalTextView
+                android:textSize="16sp"
+                android:layout_gravity="center"
+                android:background="#000000"
+                android:textColor="#ffffff"
+                android:textAllCaps="false"
+                android:text="Book a Service"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginTop="8dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipe_refresh_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_weight="1"
+            android:id="@+id/recyclerViewRequest"
+            android:padding="4dp"
+            android:scrollbars="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+    <!--<android.support.design.widget.FloatingActionButton-->
+    <!--android:id="@+id/fabBtnAddNewRequest"-->
+    <!--android:layout_gravity="bottom|right"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_margin="12dp"-->
+    <!--android:clickable="true"-->
+    <!--android:src="@drawable/add"-->
+    <!--app:backgroundTint="@color/colorPrimary"-->
+    <!--/>-->
+
+</FrameLayout>
+
+</LinearLayout>

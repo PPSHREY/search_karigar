@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:orientation="vertical"
+android:layout_height="match_parent"
+android:background="@color/bg_lightgray"
+tools:context="com.scoutlabour.activities.AddNewAddressActivity">
+
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/app_bar"/>
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:id="@+id/llAddressName"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.scoutlabour.custom.NormalTextView
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:textSize="20sp"
+                    android:textColor="#000"
+                    android:textAllCaps="false"
+                    android:text="Address Name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <RadioGroup
+                    android:id="@+id/rgbAddress"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginBottom="4dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/rdbHome"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:checked="true"
+                        android:text="Home" />
+
+                    <RadioButton
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/rdbOffice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Office" />
+                    <RadioButton
+                        android:layout_marginLeft="20dp"
+                        android:id="@+id/rdbOther"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Other" />
+
+                </RadioGroup>
+                <com.scoutlabour.custom.NormalEditTextView
+                    android:visibility="gone"
+                    android:id="@+id/etAddressNickName"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/border_grey"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+                    android:paddingTop="@dimen/edt_padding_top_12dp"
+                    android:paddingLeft="@dimen/edt_padding_left_10dp"
+                    android:paddingRight="@dimen/edt_padding_right_10dp"
+                    android:gravity="left"
+                    android:hint="Address Nickname"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:textColor="#000"
+                    android:textColorHint="#9C9C9C"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:orientation="vertical">
+
+        <com.scoutlabour.custom.NormalEditTextView
+            android:id="@+id/etFlatHouse"
+            android:background="@drawable/border_gray_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+            android:paddingTop="@dimen/edt_padding_top_12dp"
+            android:paddingLeft="@dimen/edt_padding_left_10dp"
+            android:paddingRight="@dimen/edt_padding_right_10dp"
+            android:gravity="left"
+            android:hint="Flat / House No. / Floor / Building"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minLines="1"
+            android:textColor="#000"
+            android:textColorHint="#9C9C9C"
+            android:textSize="16sp" />
+
+        <com.scoutlabour.custom.NormalEditTextView
+            android:id="@+id/etColony"
+            android:layout_marginTop="-1dp"
+            android:background="@drawable/border_gray_middle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+            android:paddingTop="@dimen/edt_padding_top_12dp"
+            android:paddingLeft="@dimen/edt_padding_left_10dp"
+            android:paddingRight="@dimen/edt_padding_right_10dp"
+            android:gravity="left"
+            android:hint="Colony / Street / Locality"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minLines="1"
+            android:textColor="#000"
+            android:textColorHint="#9C9C9C"
+            android:textSize="16sp" />
+        <com.scoutlabour.custom.NormalEditTextView
+            android:id="@+id/etLandmark"
+            android:layout_marginTop="-1dp"
+            android:background="@drawable/border_gray_middle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+            android:paddingTop="@dimen/edt_padding_top_12dp"
+            android:paddingLeft="@dimen/edt_padding_left_10dp"
+            android:paddingRight="@dimen/edt_padding_right_10dp"
+            android:gravity="left"
+            android:hint="Landmark"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minLines="1"
+            android:textColor="#000"
+            android:textColorHint="#9C9C9C"
+            android:textSize="16sp" />
+
+        <com.scoutlabour.custom.NormalEditTextView
+            android:id="@+id/etCity"
+            android:layout_marginTop="-1dp"
+            android:background="@drawable/border_gray_middle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+            android:paddingTop="@dimen/edt_padding_top_12dp"
+            android:paddingLeft="@dimen/edt_padding_left_10dp"
+            android:paddingRight="@dimen/edt_padding_right_10dp"
+            android:gravity="left"
+            android:hint="City / Village"
+            android:inputType="text"
+            android:maxLines="1"
+            android:minLines="1"
+            android:textColor="#000"
+            android:textColorHint="#9C9C9C"
+            android:textSize="16sp" />
+
+        <Spinner
+            android:layout_marginTop="-1dp"
+            android:id="@+id/spState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_gray_middle">
+        </Spinner>
+
+
+        <com.scoutlabour.custom.NormalEditTextView
+            android:id="@+id/etPincode"
+            android:layout_marginTop="-1dp"
+            android:paddingBottom="@dimen/edt_padding_bottom_12dp"
+            android:paddingTop="@dimen/edt_padding_top_12dp"
+            android:paddingLeft="@dimen/edt_padding_left_10dp"
+            android:paddingRight="@dimen/edt_padding_right_10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border_gray_bottom"
+            android:gravity="left"
+            android:hint="Pincode"
+            android:inputType="number"
+            android:maxLines="1"
+            android:minLines="1"
+            android:textColor="#000"
+            android:textColorHint="#9C9C9C"
+            android:textSize="16sp" />
+
+
+
+    </LinearLayout>
+</LinearLayout>
+
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+    <LinearLayout
+        android:layout_marginBottom="0dp"
+        android:id="@+id/llAddAddress"
+        android:clickable="true"
+        android:padding="14dp"
+        android:gravity="center"
+        android:background="#000000"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <com.scoutlabour.custom.NormalTextView
+            android:id="@+id/txtAddAddress"
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:background="#000000"
+            android:textColor="#ffffff"
+            android:textAllCaps="false"
+            android:text="Add Address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:layout_marginLeft="6dp"
+            android:padding="2dp"
+            android:src="@drawable/arrows"
+            android:layout_width="20dp"
+            android:layout_height="20dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
+</LinearLayout>

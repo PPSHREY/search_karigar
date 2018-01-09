@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/bg_lightgray"
+android:orientation="vertical"
+tools:context="com.scoutlabour.activities.RequestServiceActivity">
+
+<include layout="@layout/app_bar" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <com.scoutlabour.custom.NormalTextView
+                            android:id="@+id/txtSubCategoryName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="SubCategory Name"
+                            android:textColor="#000"
+                            android:textSize="18sp" />
+
+                        <com.scoutlabour.custom.NormalTextView
+                            android:id="@+id/txtCategoryName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:text="category name"
+                            android:textColor="#000"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <com.scoutlabour.custom.NormalTextView
+                        android:id="@+id/txtTotalRs"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="120 Rs."
+                        android:textColor="#006400"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <com.scoutlabour.custom.NormalTextView
+                    android:id="@+id/txtServiceDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Service Detail"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+
+
+                    <com.scoutlabour.custom.NormalTextView
+                        android:id="@+id/txtServicedescription"
+                        android:minLines="3"
+                        android:maxLines="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="service description.."
+                        android:textColor="#000"
+                        android:textSize="16sp" />
+
+
+
+
+
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <com.scoutlabour.custom.NormalTextView
+                    android:id="@+id/txtAddressLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+                <Spinner
+                    android:visibility="gone"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="15dp"
+                    android:id="@+id/spAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/custom_spinner_bg">
+                </Spinner>
+                <LinearLayout
+                    android:visibility="gone"
+                    android:id="@+id/llAddressDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <com.scoutlabour.custom.NormalTextView
+                        android:id="@+id/txtAddressName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="House"
+                        android:textAllCaps="false"
+                        android:textColor="#000"
+                        android:textSize="22sp" />
+
+                    <com.scoutlabour.custom.NormalTextView
+                        android:id="@+id/txtHouseNo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="House No : 304, Street : 1"
+                        android:textAllCaps="false"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                    <com.scoutlabour.custom.NormalTextView
+                        android:id="@+id/txtLandMark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ajava Chokdi"
+                        android:textAllCaps="false"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                    <com.scoutlabour.custom.NormalTextView
+                        android:id="@+id/txtCityPincode"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Vadodara, 390019"
+                        android:textAllCaps="false"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                    <com.scoutlabour.custom.NormalTextView
+                        android:id="@+id/txtState"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gujrat"
+                        android:textAllCaps="false"
+                        android:textColor="#000"
+                        android:textSize="14sp" />
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <com.scoutlabour.custom.NormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Problem Explaination"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+
+
+                <com.scoutlabour.custom.NormalEditTextView
+                android:layout_margin="15dp"
+                android:id="@+id/etProblemDetail"
+                android:background="@drawable/border_grey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="left"
+                android:hint="Problem Detail"
+                android:inputType="textMultiLine"
+                    android:padding="8dp"
+                android:maxLines="3"
+                    android:singleLine="false"
+                    android:lines="3"
+                android:minLines="3"
+                android:textColor="#000"
+                android:textColorHint="#9C9C9C"
+                android:textSize="16sp" />
+
+
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#b3afaf" />
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <LinearLayout
+                android:background="#000000"
+                android:id="@+id/llCancel"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_marginRight="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/cancel" />
+
+                <com.scoutlabour.custom.NormalTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="Cancel"
+                    android:textStyle="bold"
+                    android:textColor="#ffffff"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <!--<View-->
+                <!--android:layout_width="1.5dp"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:background="#b3afaf" />-->
+
+            <LinearLayout
+                android:background="#ffffff"
+                android:id="@+id/llConfirm"
+                android:gravity="center"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:clickable="true"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <ImageView
+                    android:layout_marginRight="25dp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/check_mark_black" />
+
+                <com.scoutlabour.custom.NormalTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:text="Confirm"
+                    android:textStyle="bold"
+                    android:textColor="#000"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+</LinearLayout>

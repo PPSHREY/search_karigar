@@ -1,0 +1,7 @@
+<resources>
+
+    <dimen name="edt_padding_bottom_12dp">12dp</dimen>
+    <dimen name="edt_padding_top_12dp">12dp</dimen>
+    <dimen name="edt_padding_left_10dp">10dp</dimen>
+    <dimen name="edt_padding_right_10dp">10dp</dimen>
+</resources>
