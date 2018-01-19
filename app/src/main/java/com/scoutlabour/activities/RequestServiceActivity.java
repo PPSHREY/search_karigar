@@ -2,6 +2,7 @@ package com.scoutlabour.activities;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.support.v7.app.AppCompatActivity;
@@ -36,7 +37,7 @@ import java.util.ArrayList;
 
 public class RequestServiceActivity extends AppCompatActivity {
 
-    private TextView txtAddressLabel,txtSubCategoryName, txtCategoryName, txtTotalRs, txtServiceDetail, txtServicedescription, txtAddress, txtProblemDetail,txtAddressName,txtHouseNo,txtLandMark,txtCityPincode,txtState;
+    private TextView txtAddressLabel,txtSubCategoryName, txtCategoryName, txtTotalRs, txtServiceDetail, txtServicedescription, txtAddress, txtProblemDetail,txtAddressName,txtHouseNo,txtLandMark,txtCityPincode,txtState,txtNewAddress;
     private LinearLayout llCancel, llConfirm, llAddressDetail;
     private Spinner spAddress;
     private String selectedAddress, selectedState;
@@ -44,12 +45,20 @@ public class RequestServiceActivity extends AppCompatActivity {
     private AddressDetailListModel addressDetailListModel;
     private EditText etProblemDetail;
 
+
     private int selectedItemPosition;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_service);
-
+        txtNewAddress= (TextView) findViewById(R.id.txtAddress);
+        txtNewAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(RequestServiceActivity.this,AddNewAddressActivity.class);
+                startActivity(i);
+            }
+        });
         txtAddressLabel = (TextView) findViewById(R.id.txtAddressLabel);
         txtSubCategoryName = (TextView) findViewById(R.id.txtSubCategoryName);
         txtCategoryName = (TextView) findViewById(R.id.txtCategoryName);
@@ -88,8 +97,9 @@ public class RequestServiceActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-               if (spAddress.getSelectedItemPosition() == 0) {
-                    Toast.makeText(RequestServiceActivity.this, "Please Select Address ", Toast.LENGTH_SHORT).show();
+               if (addressDetailListModel.addressDetailModelArrayList.size()==0) {
+
+                    Toast.makeText(RequestServiceActivity.this, "Please Add Address ", Toast.LENGTH_SHORT).show();
                 } else if (etProblemDetail.getText().toString().trim().length() == 0) {
 
                    Toast.makeText(RequestServiceActivity.this, "Please Enter the Problem Details", Toast.LENGTH_SHORT).show();
@@ -100,6 +110,19 @@ public class RequestServiceActivity extends AppCompatActivity {
         });
 
         spAddress = (Spinner) findViewById(R.id.spAddress);
+
+
+
+        setToolbar();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getAddresses();
+    }
+
+    private void getAddresses(){
         if (isNetworkConnected()) {
 
 
@@ -129,7 +152,7 @@ public class RequestServiceActivity extends AppCompatActivity {
 
                     Log.e("size",addressDetailModels.size()+"");
                     addressDetailModels = new ArrayList<AddressDetailModel>();
-                    addressDetailModels.add(new AddressDetailModel("Select Address"));
+//                    addressDetailModels.add(new AddressDetailModel("Select Address"));
                     try {
 
                         for (int i = 0; i < addressDetailListModel.addressDetailModelArrayList.size(); i++) {
@@ -141,10 +164,12 @@ public class RequestServiceActivity extends AppCompatActivity {
                     }
                     if(addressDetailListModel.addressDetailModelArrayList.size()==0)
                     {
+                        txtNewAddress.setVisibility(View.VISIBLE);
                         txtAddressLabel.setText("No Addresses Added Yet...!");
                         spAddress.setVisibility(View.GONE);
 //                        Toast.makeText(RequestServiceActivity.this, "Please Add Your Address First", Toast.LENGTH_SHORT).show();
                     }else {
+                        txtNewAddress.setVisibility(View.GONE);
                         txtAddressLabel.setText("Address");
                         spAddress.setVisibility(View.VISIBLE);
                         initCustomSpinner();
@@ -161,9 +186,6 @@ public class RequestServiceActivity extends AppCompatActivity {
             }.call();
 
         }
-
-
-        setToolbar();
     }
 
     private boolean isNetworkConnected() {
@@ -288,49 +310,17 @@ public class RequestServiceActivity extends AppCompatActivity {
 //                registrationObject.put("category_id", category.get(spCategory.getSelectedItemPosition()).getId());
 
 
-
-                if(spAddress.getSelectedItemPosition()==0){
-                    llAddressDetail.setVisibility(View.GONE);
-                }else if(spAddress.getSelectedItemPosition()==1){
-                    llAddressDetail.setVisibility(View.VISIBLE);
-
-                    try {
-                        txtAddressName.setText(addressDetailModels.get(1).address_name);
-                        txtHouseNo.setText(addressDetailModels.get(1).address_1+", "+addressDetailModels.get(1).address_2);
-                        txtLandMark.setText(addressDetailModels.get(1).address_3);
-                        txtCityPincode.setText(addressDetailModels.get(1).city + ", " + addressDetailModels.get(1).pincode);
-                        txtState.setText(addressDetailModels.get(1).state);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-
-                }else if(spAddress.getSelectedItemPosition()==2){
-                    llAddressDetail.setVisibility(View.VISIBLE);
-
-                    try {
-                        txtAddressName.setText(addressDetailModels.get(2).address_name);
-                        txtHouseNo.setText(addressDetailModels.get(2).address_1+", "+addressDetailModels.get(2).address_2);
-                        txtLandMark.setText(addressDetailModels.get(2).address_3);
-                        txtCityPincode.setText(addressDetailModels.get(2).city + ", " + addressDetailModels.get(2).pincode);
-                        txtState.setText(addressDetailModels.get(2).state);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                }else if(spAddress.getSelectedItemPosition()==3){
-                    llAddressDetail.setVisibility(View.VISIBLE);
-
-                    try {
-                        txtAddressName.setText(addressDetailModels.get(3).address_name);
-                        txtHouseNo.setText(addressDetailModels.get(3).address_1+", "+addressDetailModels.get(3).address_2);
-                        txtLandMark.setText(addressDetailModels.get(3).address_3);
-                        txtCityPincode.setText(addressDetailModels.get(3).city + ", " + addressDetailModels.get(3).pincode);
-                        txtState.setText(addressDetailModels.get(3).state);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                llAddressDetail.setVisibility(View.VISIBLE);
+                try {
+                    txtAddressName.setText(addressDetailModels.get(spAddress.getSelectedItemPosition()).address_name);
+                    txtHouseNo.setText(addressDetailModels.get(spAddress.getSelectedItemPosition()).address_1+", "+addressDetailModels.get(1).address_2);
+                    txtLandMark.setText(addressDetailModels.get(spAddress.getSelectedItemPosition()).address_3);
+                    txtCityPincode.setText(addressDetailModels.get(1).city + ", " + addressDetailModels.get(1).pincode);
+                    txtState.setText(addressDetailModels.get(spAddress.getSelectedItemPosition()).state);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
+
 
 
             }

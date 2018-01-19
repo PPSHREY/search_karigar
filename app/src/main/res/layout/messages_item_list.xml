@@ -35,21 +35,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <com.scoutlabour.custom.NormalTextView
+                        <TextView
                             android:id="@+id/txtTitle"
                             android:layout_weight="1"
-                            android:textSize="22sp"
+                            android:textSize="14sp"
                             android:textColor="#000"
                             android:textAllCaps="false"
                             android:text="Title"
+                            android:textStyle="bold"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content" />
                         <com.scoutlabour.custom.NormalTextView
                             android:id="@+id/txtDateTime"
-                            android:textSize="14sp"
+                            android:textSize="10sp"
                             android:textColor="#000"
                             android:textAllCaps="false"
-                            android:text="12 Oct 2017 2:00 pm"
+                            android:text=""
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
 

@@ -19,6 +19,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:visibility="gone"
                 android:id="@+id/imgServiceLogo"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
@@ -28,6 +29,7 @@
 
 
                 <com.scoutlabour.custom.NormalTextView
+                    android:padding="8dp"
                     android:id="@+id/txtServiceName"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="10dp"
@@ -46,7 +48,7 @@
         </LinearLayout>
     <View
         android:background="#ffe0e0e0"
-        android:layout_marginLeft="66dp"
+
         android:layout_width="match_parent"
         android:layout_height="1dp"/>
 

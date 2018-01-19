@@ -128,6 +128,20 @@ tools:context="com.scoutlabour.activities.RequestServiceActivity">
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="normal" />
+
+                <com.scoutlabour.custom.NormalTextView
+                    android:visibility="gone"
+                    android:id="@+id/txtAddress"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:padding="8dp"
+                    android:background="#000"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:textColor="#fff"
+                    android:text="+ NEW ADDRESS"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
                 <Spinner
                     android:visibility="gone"
                     android:layout_marginTop="8dp"
