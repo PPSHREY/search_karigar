@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_user);
 
         llCleaning= (LinearLayout) findViewById(R.id.llCleaning);
         llCleaning.setOnClickListener(new View.OnClickListener() {

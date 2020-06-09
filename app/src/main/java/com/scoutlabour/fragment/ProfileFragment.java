@@ -97,7 +97,7 @@ public class ProfileFragment extends Fragment {
         llRateApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rateApp();
+                //rateApp();
             }
         });
 
@@ -137,7 +137,8 @@ public class ProfileFragment extends Fragment {
 
     private void shareApp() {
 
-        String shareBody = getString(R.string.download_app);
+//        String shareBody = getString(R.string.download_app);
+        String shareBody = "Download Search Karigar App";
         Intent sharingIntent = new Intent(Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(Intent.EXTRA_TEXT, shareBody);

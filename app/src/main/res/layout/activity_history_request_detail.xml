@@ -5,8 +5,7 @@ xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:background="@color/bg_lightgray"
-android:orientation="vertical"
-tools:context="com.scoutlabour.activities.HistoryRequestDetailActivity">
+android:orientation="vertical">
 
 <include layout="@layout/app_bar" />
 
@@ -269,6 +268,7 @@ tools:context="com.scoutlabour.activities.HistoryRequestDetailActivity">
             </LinearLayout>
 
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -279,7 +279,7 @@ tools:context="com.scoutlabour.activities.HistoryRequestDetailActivity">
                <com.scoutlabour.custom.NormalTextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Worker Details"
+                    android:text="User Details"
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="normal" />
@@ -310,6 +310,7 @@ tools:context="com.scoutlabour.activities.HistoryRequestDetailActivity">
                 <!--</LinearLayout>-->
 
                 <ImageView
+                    android:visibility="gone"
                     android:layout_margin="15dp"
                     android:id="@+id/imgIdProof"
                     android:layout_width="match_parent"
@@ -331,6 +332,7 @@ tools:context="com.scoutlabour.activities.HistoryRequestDetailActivity">
                         android:orientation="horizontal">
 
                         <de.hdodenhof.circleimageview.CircleImageView
+                            android:visibility="gone"
                             android:id="@+id/imgWorker"
                             android:layout_width="40dp"
                             android:layout_height="40dp"
@@ -349,7 +351,7 @@ tools:context="com.scoutlabour.activities.HistoryRequestDetailActivity">
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
-                                android:text="Worker Name"
+                                android:text="User Name"
                                 android:textColor="#000"
                                 android:textSize="18sp" />
 
@@ -375,9 +377,6 @@ tools:context="com.scoutlabour.activities.HistoryRequestDetailActivity">
                 </LinearLayout>
 
             </LinearLayout>
-
-
-
 
             <LinearLayout
             android:layout_width="match_parent"
@@ -538,57 +537,72 @@ tools:context="com.scoutlabour.activities.HistoryRequestDetailActivity">
                     android:textColor="#000"
                     android:textSize="18sp"
                     android:textStyle="normal" />
+
                 <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                   <com.scoutlabour.custom.NormalTextView
-                        android:id="@+id/txtAddressName"
-                        android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="House"
-                        android:textAllCaps="false"
-                        android:textColor="#000"
-                        android:textSize="22sp" />
+                        android:orientation="vertical">
 
-                   <com.scoutlabour.custom.NormalTextView
-                        android:id="@+id/txtHouseNo"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="House No : 304, Street : 1"
-                        android:textAllCaps="false"
-                        android:textColor="#000"
-                        android:textSize="14sp" />
+                        <com.scoutlabour.custom.NormalTextView
+                            android:id="@+id/txtAddressName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="House"
+                            android:textAllCaps="false"
+                            android:textColor="#000"
+                            android:textSize="22sp" />
 
-                   <com.scoutlabour.custom.NormalTextView
-                        android:id="@+id/txtLandMark"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ajava Chokdi"
-                        android:textAllCaps="false"
-                        android:textColor="#000"
-                        android:textSize="14sp" />
+                        <com.scoutlabour.custom.NormalTextView
+                            android:id="@+id/txtHouseNo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="House No : 304, Street : 1"
+                            android:textAllCaps="false"
+                            android:textColor="#000"
+                            android:textSize="14sp" />
 
-                   <com.scoutlabour.custom.NormalTextView
-                        android:id="@+id/txtCityPincode"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Vadodara, 390019"
-                        android:textAllCaps="false"
-                        android:textColor="#000"
-                        android:textSize="14sp" />
+                        <com.scoutlabour.custom.NormalTextView
+                            android:id="@+id/txtLandMark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Ajava Chokdi"
+                            android:textAllCaps="false"
+                            android:textColor="#000"
+                            android:textSize="14sp" />
 
-                   <com.scoutlabour.custom.NormalTextView
-                        android:id="@+id/txtState"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Gujrat"
-                        android:textAllCaps="false"
-                        android:textColor="#000"
-                        android:textSize="14sp" />
+                        <com.scoutlabour.custom.NormalTextView
+                            android:id="@+id/txtCityPincode"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Vadodara, 390019"
+                            android:textAllCaps="false"
+                            android:textColor="#000"
+                            android:textSize="14sp" />
 
+                        <com.scoutlabour.custom.NormalTextView
+                            android:id="@+id/txtState"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Gujrat"
+                            android:textAllCaps="false"
+                            android:textColor="#000"
+                            android:textSize="14sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_gravity="center_vertical"
+                        android:id="@+id/imgGetLocation"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/address" />
                 </LinearLayout>
+
 
                 <!--<LinearLayout-->
                 <!--android:orientation="horizontal"-->
@@ -654,37 +668,49 @@ tools:context="com.scoutlabour.activities.HistoryRequestDetailActivity">
 
 
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPayment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="#fff"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <com.scoutlabour.custom.NormalTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Payment Details"
+                    android:textColor="#000"
+                    android:textSize="18sp"
+                    android:textStyle="normal" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.scoutlabour.custom.NormalTextView
+                        android:id="@+id/txtPaymentDetails"
+                        android:minLines="3"
+                        android:maxLines="3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="Payment Details....."
+                        android:textColor="#000"
+                        android:textSize="16sp" />
+
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>
-    <!--<LinearLayout-->
-    <!--android:clickable="true"-->
-    <!--android:id="@+id/llAssignWorker"-->
-    <!--android:padding="14dp"-->
-    <!--android:background="#000000"-->
-    <!--android:gravity="center"-->
-    <!--android:orientation="horizontal"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content">-->
-    <!--<com.urbanclapadmin.custom.NormalTextView-->
-    <!--android:textSize="20sp"-->
-    <!--android:layout_gravity="center"-->
-    <!--android:background="#000000"-->
-    <!--android:textColor="#ffffff"-->
-    <!--android:textAllCaps="false"-->
-    <!--android:text="Assign Worker"-->
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content" />-->
-    <!--<ImageView-->
-    <!--android:layout_marginLeft="6dp"-->
-    <!--android:padding="2dp"-->
-    <!--android:src="@drawable/arrows"-->
-    <!--android:layout_width="20dp"-->
-    <!--android:layout_height="20dp" />-->
-
-
-    <!--</LinearLayout>-->
-
 
 </LinearLayout>
 </LinearLayout>

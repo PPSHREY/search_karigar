@@ -120,7 +120,7 @@ public class MessagesFragment extends Fragment {
 
             try {
 
-                registrationObject.put("user_id", PrefUtils.getUser(getActivity()));
+                registrationObject.put("user_id", PrefUtils.getUser(getActivity()).user_id);
                 registrationObject.put("page", lastProductId + "");
 
 

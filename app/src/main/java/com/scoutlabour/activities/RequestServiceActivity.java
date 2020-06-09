@@ -1,5 +1,6 @@
 package com.scoutlabour.activities;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -22,8 +23,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.GsonBuilder;
+import com.paypal.android.sdk.payments.PayPalConfiguration;
+import com.paypal.android.sdk.payments.PayPalPayment;
+import com.paypal.android.sdk.payments.PayPalService;
+import com.paypal.android.sdk.payments.PaymentActivity;
+import com.paypal.android.sdk.payments.PaymentConfirmation;
 import com.scoutlabour.R;
 import com.scoutlabour.custom.AppConstants;
+import com.scoutlabour.custom.PayPalConfig;
 import com.scoutlabour.custom.PostServiceCall;
 import com.scoutlabour.custom.PrefUtils;
 import com.scoutlabour.model.AddAddressResponseModel;
@@ -33,9 +40,24 @@ import com.scoutlabour.model.AddressDetailModel;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 
 public class RequestServiceActivity extends AppCompatActivity {
+
+    //Payment Amount
+    private String paymentAmount;
+
+    //Paypal intent request code to track onActivityResult method
+    public static final int PAYPAL_REQUEST_CODE = 123;
+
+
+    //Paypal Configuration Object
+    private static PayPalConfiguration config = new PayPalConfiguration()
+            // Start with mock environment.  When ready, switch to sandbox (ENVIRONMENT_SANDBOX)
+            // or live (ENVIRONMENT_PRODUCTION)
+            .environment(PayPalConfiguration.ENVIRONMENT_SANDBOX)
+            .clientId(PayPalConfig.PAYPAL_CLIENT_ID);
 
     private TextView txtAddressLabel,txtSubCategoryName, txtCategoryName, txtTotalRs, txtServiceDetail, txtServicedescription, txtAddress, txtProblemDetail,txtAddressName,txtHouseNo,txtLandMark,txtCityPincode,txtState,txtNewAddress;
     private LinearLayout llCancel, llConfirm, llAddressDetail;
@@ -77,12 +99,12 @@ public class RequestServiceActivity extends AppCompatActivity {
         etProblemDetail = (EditText) findViewById(R.id.etProblemDetail);
         selectedItemPosition = getIntent().getIntExtra("position", 0);
 
-        txtTotalRs.setText(getIntent().getStringExtra("charges") + " Rs.");
+        txtTotalRs.setText("₹ "+getIntent().getStringExtra("charges"));
 //        txtSubCategoryName.setText(getIntent().getStringExtra("subCategoryName"));
         txtCategoryName.setText(getIntent().getStringExtra("subCategoryName"));
         txtServicedescription.setText(getIntent().getStringExtra("serviceDetail"));
 
-        llAddressDetail = (LinearLayout) findViewById(R.id.llAddressDetail);
+            llAddressDetail = (LinearLayout) findViewById(R.id.llAddressDetail);
         llCancel = (LinearLayout) findViewById(R.id.llCancel);
         llCancel.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,7 +126,9 @@ public class RequestServiceActivity extends AppCompatActivity {
 
                    Toast.makeText(RequestServiceActivity.this, "Please Enter the Problem Details", Toast.LENGTH_SHORT).show();
                 }else {
-                   doPostNetworkOperation();
+//                   doPostNetworkOperation();
+
+                   getPayment();
                }
             }
         });
@@ -115,6 +139,67 @@ public class RequestServiceActivity extends AppCompatActivity {
 
         setToolbar();
     }
+
+    private void getPayment() {
+        //Getting the amount from editText
+        paymentAmount = getIntent().getStringExtra("charges");
+
+        //Creating a paypalpayment
+        PayPalPayment payment = new PayPalPayment(new BigDecimal(String.valueOf(paymentAmount)), "USD", getIntent().getStringExtra("subCategoryName")+" Charges",
+                PayPalPayment.PAYMENT_INTENT_SALE);
+
+        //Creating Paypal Payment activity intent
+        Intent intent = new Intent(this, PaymentActivity.class);
+
+        //putting the paypal configuration to the intent
+        intent.putExtra(PayPalService.EXTRA_PAYPAL_CONFIGURATION, config);
+
+        //Puting paypal payment to the intent
+        intent.putExtra(PaymentActivity.EXTRA_PAYMENT, payment);
+
+        //Starting the intent activity for result
+        //the request code will be used on the method onActivityResult
+        startActivityForResult(intent, PAYPAL_REQUEST_CODE);
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //If the result is from paypal
+        if (requestCode == PAYPAL_REQUEST_CODE) {
+
+            //If the result is OK i.e. user has not canceled the payment
+            if (resultCode == Activity.RESULT_OK) {
+                //Getting the payment confirmation
+                PaymentConfirmation confirm = data.getParcelableExtra(PaymentActivity.EXTRA_RESULT_CONFIRMATION);
+
+                //if confirmation is not null
+                if (confirm != null) {
+                    try {
+                        //Getting the payment details
+                        String paymentDetails = confirm.toJSONObject().toString(4);
+                        Log.i("paymentExample", paymentDetails);
+
+                        //Starting a new activity for the payment details and also putting the payment details with intent
+                        startActivity(new Intent(this, ConfirmationActivity.class)
+                                .putExtra("PaymentDetails", paymentDetails)
+                                .putExtra("PaymentAmount", paymentAmount)
+                                .putExtra("categoryId", getIntent().getStringExtra("categoryId"))
+                                .putExtra("subCategoryId", getIntent().getStringExtra("subCategoryId"))
+                                .putExtra("address_id", addressDetailModels.get(spAddress.getSelectedItemPosition()).address_id)
+                                .putExtra("problem_explaination", etProblemDetail.getText().toString().trim()));
+                        finish();
+
+                    } catch (JSONException e) {
+                        Log.e("paymentExample", "an extremely unlikely failure occurred: ", e);
+                    }
+                }
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                Log.i("paymentExample", "The user canceled.");
+            } else if (resultCode == PaymentActivity.RESULT_EXTRAS_INVALID) {
+                Log.i("paymentExample", "An invalid Payment or PayPalConfiguration was submitted. Please see the docs.");
+            }
+        }
+    }
+
 
     @Override
     protected void onResume() {
@@ -193,107 +278,7 @@ public class RequestServiceActivity extends AppCompatActivity {
 
         return cm.getActiveNetworkInfo() != null;
     }
-    private void doPostNetworkOperation() {
 
-
-        if (isNetworkConnected()) {
-
-            final ProgressDialog progressDialog = new ProgressDialog(RequestServiceActivity.this);
-            progressDialog.setMessage("Submitting.....");
-            progressDialog.setCancelable(false);
-            progressDialog.show();
-            JSONObject registrationObject = new JSONObject();
-            try {
-
-
-              registrationObject.put("category_id", getIntent().getStringExtra("categoryId"));
-                registrationObject.put("sub_category_id", getIntent().getStringExtra("subCategoryId"));
-                registrationObject.put("address_id",addressDetailModels.get(spAddress.getSelectedItemPosition()).address_id);
-                registrationObject.put("problem_explaination", etProblemDetail.getText().toString().trim());
-                registrationObject.put("user_id", PrefUtils.getUser(RequestServiceActivity.this).user_id);
-
-                Log.e("request object", registrationObject+"");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            Log.e("url main", AppConstants.ADD_NEW_REQUEST);
-            new PostServiceCall(AppConstants.ADD_NEW_REQUEST, registrationObject) {
-
-                @Override
-                public void response(String response) {
-
-
-
-                    Log.e("response", response + "");
-
-                    final AddAddressResponseModel addAddressResponseModel = new GsonBuilder().create().fromJson(response, AddAddressResponseModel.class);
-
-                    if (addAddressResponseModel.status.equalsIgnoreCase("0")) {
-                        progressDialog.dismiss();
-                        Toast.makeText(RequestServiceActivity.this, addAddressResponseModel.message + "", Toast.LENGTH_LONG).show();
-
-
-                    } else {
-
-                        JSONObject registrationObject = new JSONObject();
-                        try {
-
-
-
-                            registrationObject.put("from_user_id", PrefUtils.getUser(RequestServiceActivity.this).user_id);
-                            registrationObject.put("to_user_id", "1");
-                            registrationObject.put("order_id",addAddressResponseModel.status);
-                            registrationObject.put("title", "New Order Request From Customer");
-                            registrationObject.put("message", PrefUtils.getUser(RequestServiceActivity.this).name+" sent you request");
-
-                            Log.e("request object", registrationObject+"");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-
-                        new PostServiceCall(AppConstants.PUSH_TO_ADMIN, registrationObject) {
-
-                            @Override
-                            public void response(String response) {
-
-                                progressDialog.dismiss();
-                                Toast.makeText(RequestServiceActivity.this, addAddressResponseModel.message + "", Toast.LENGTH_LONG).show();
-                                finish();
-                            }
-
-
-                            @Override
-                            public void error(String error) {
-                                progressDialog.dismiss();
-                                Toast.makeText(RequestServiceActivity.this, addAddressResponseModel.message + "", Toast.LENGTH_LONG).show();
-                                finish();
-
-                            }
-                        }.call();
-
-
-                    }
-
-
-
-                }
-
-
-                @Override
-                public void error(String error) {
-                    progressDialog.dismiss();
-
-                    Log.e(" response error...", error + "");
-                }
-            }.call();
-
-
-        } else {
-            Toast.makeText(RequestServiceActivity.this, "Internet Connection  not Avaiable", Toast.LENGTH_SHORT).show();
-        }
-
-
-    }
 
     private void initCustomSpinner() {
 
@@ -313,9 +298,9 @@ public class RequestServiceActivity extends AppCompatActivity {
                 llAddressDetail.setVisibility(View.VISIBLE);
                 try {
                     txtAddressName.setText(addressDetailModels.get(spAddress.getSelectedItemPosition()).address_name);
-                    txtHouseNo.setText(addressDetailModels.get(spAddress.getSelectedItemPosition()).address_1+", "+addressDetailModels.get(1).address_2);
+                    txtHouseNo.setText(addressDetailModels.get(spAddress.getSelectedItemPosition()).address_1+", "+addressDetailModels.get(spAddress.getSelectedItemPosition()).address_2);
                     txtLandMark.setText(addressDetailModels.get(spAddress.getSelectedItemPosition()).address_3);
-                    txtCityPincode.setText(addressDetailModels.get(1).city + ", " + addressDetailModels.get(1).pincode);
+                    txtCityPincode.setText(addressDetailModels.get(spAddress.getSelectedItemPosition()).city + ", " + addressDetailModels.get(spAddress.getSelectedItemPosition()).pincode);
                     txtState.setText(addressDetailModels.get(spAddress.getSelectedItemPosition()).state);
                 } catch (Exception e) {
                     e.printStackTrace();

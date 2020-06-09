@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Sevan</string>
+    <string name="app_name">Search Karigar</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -8,9 +8,9 @@
     <string name="uc_icon_map_cross_bold"></string>
     <string name="request_detail_date_time"><![CDATA[date & time]]></string>
     <bool name="isTablet">true</bool>
-    <string name="download_app"> Download Scout_labour
+    <string name="download_app"> Download Search Karigar
         Application \n https://play.google.com/store/apps/details?id=</string>
-    <string name="main_appshare">Share Scout_labour Application </string>
+    <string name="main_appshare">Share Search Karigar Application </string>
     <string name="contact_us_email_id">Email Id:</string>
     <string name="contact_us_mobile_no">Mobile No:</string>
 

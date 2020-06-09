@@ -66,6 +66,17 @@ public class NewRequestDetailModel {
     public String worker_id_image_med;
     @SerializedName("problem_explaination")
     public String problem_explaination;
+
+    @SerializedName("transaction_id")
+    public String transaction_id;
+
+    @SerializedName("transaction_amount")
+    public String transaction_amount;
+
+    @SerializedName("feedback_given")
+    public String feedback_given;
+
+
     @SerializedName("service_date")
     public String service_date;
     @SerializedName("service_time")

@@ -8,12 +8,13 @@ import com.scoutlabour.model.NewRequestDetailListModel;
 import com.scoutlabour.model.RegistrationDetailModel;
 import com.scoutlabour.model.SubCategoryDetailListModel;
 import com.scoutlabour.model.SubCategoryDetailModel;
+import com.scoutlabour.model.labour.RegistrationLabourDetailModel;
 
 import java.util.ArrayList;
 
 
 public class PrefUtils {
-
+////////////user
     public static void setUser(RegistrationDetailModel currentUser, Context ctx) {
         ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(ctx, "user_pref", 0);
         complexPreferences.putObject("user_pref_value", currentUser);
@@ -32,7 +33,26 @@ public class PrefUtils {
         RegistrationDetailModel currentUser = complexPreferences.getObject("user_pref_value", RegistrationDetailModel.class);
         return currentUser;
     }
+///////////////////labour
+public static void setlabour(RegistrationLabourDetailModel currentUser, Context ctx) {
+    ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(ctx, "labour_pref", 0);
+    complexPreferences.putObject("labour_pref_value", currentUser);
+    complexPreferences.commit();
+}
 
+    public static void clearCurrentlabour(Context ctx) {
+        ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(ctx, "labour_pref", 0);
+        complexPreferences.clearObject();
+        complexPreferences.commit();
+    }
+
+
+    public static RegistrationLabourDetailModel getlabour(Context ctx) {
+        ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(ctx, "labour_pref", 0);
+        RegistrationLabourDetailModel currentUser = complexPreferences.getObject("labour_pref_value", RegistrationLabourDetailModel.class);
+        return currentUser;
+    }
+    ////////////////////////
     public static void setAddressList(AddressDetailListModel currentUser, Context ctx){
         ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(ctx, "address_list_prefs", 0);
         complexPreferences.putObject("address_list_prefs_value", currentUser);
@@ -76,5 +96,15 @@ public class PrefUtils {
         return currentUser;
     }
 
+    public static void setRequestListDetailLabour(com.scoutlabour.model.labour.NewRequestDetailListModel currentUser, Context ctx){
+        ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(ctx, "labour_request_list_prefs", 0);
+        complexPreferences.putObject("labour_request_list_prefs_value", currentUser);
+        complexPreferences.commit();
+    }
+    public static com.scoutlabour.model.labour.NewRequestDetailListModel setRequestListDetailLabour(Context ctx){
+        ComplexPreferences complexPreferences = ComplexPreferences.getComplexPreferences(ctx, "labour_request_list_prefs", 0);
+        com.scoutlabour.model.labour.NewRequestDetailListModel currentUser = complexPreferences.getObject("labour_request_list_prefs_value", com.scoutlabour.model.labour.NewRequestDetailListModel.class);
+        return currentUser;
+    }
 
 }

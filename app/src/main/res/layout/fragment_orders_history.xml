@@ -5,8 +5,7 @@ android:layout_width="match_parent"
 android:layout_height="match_parent"
 android:orientation="vertical"
 android:background="@color/bg_lightgray"
-tools:context="com.scoutlabour.fragment.OrdersHistoryFragment">
-
+>
 
 
 <FrameLayout

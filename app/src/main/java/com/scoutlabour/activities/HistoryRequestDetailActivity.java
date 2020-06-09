@@ -1,28 +1,46 @@
 package com.scoutlabour.activities;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.VolleyError;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.gson.GsonBuilder;
 import com.scoutlabour.R;
+import com.scoutlabour.custom.AppConstants;
+import com.scoutlabour.custom.GetServiceCall;
+import com.scoutlabour.custom.PostServiceCall;
 import com.scoutlabour.custom.PrefUtils;
+import com.scoutlabour.custom.RVEmptyObserver;
 import com.scoutlabour.model.NewRequestDetailModel;
+import com.scoutlabour.model.RegistrationDetailModel;
+import com.scoutlabour.model.SubCategoryDetailListModel;
+import com.scoutlabour.model.labour.StatusModel;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 
 public class HistoryRequestDetailActivity extends AppCompatActivity {
 
-    private TextView txtTime,txtDate,txtDateRequestSent,txtDateWorkAssigned,txtWorkerName,txtWorkerMobileNumber,txtCustomerName,txtCutomerMobileNumber,txtAddress,txtProblemDetail;
+    private TextView txtPaymentDetails,txtTime,txtDate,txtDateRequestSent,txtDateWorkAssigned,txtWorkerName,txtWorkerMobileNumber,txtCustomerName,txtCutomerMobileNumber,txtAddress,txtProblemDetail;
     private LinearLayout llAddWorker,llSelectDate,llSelectTime,llAssignWorker;
     private ImageView imgIdProof,imgWorker,imgWorkerMobile,imgCustomerMobile;
     private ArrayList<NewRequestDetailModel> newRequestDetailModels;
@@ -30,10 +48,14 @@ public class HistoryRequestDetailActivity extends AppCompatActivity {
     private boolean isTablet;
     private int selectedItemPosition;
 
+    EditText etFeedback;
+    TextView tvThanks;
+    Button btnSubmit;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_history_request_detail);
+        setContentView(R.layout.activity_history_request_detail_user);
         isTablet = getResources().getBoolean(R.bool.isTablet);
         selectedItemPosition = getIntent().getIntExtra("position", 0);
         try {
@@ -59,6 +81,11 @@ public class HistoryRequestDetailActivity extends AppCompatActivity {
         txtCutomerMobileNumber= (TextView) findViewById(R.id.txtCutomerMobileNumber);
         txtAddress= (TextView) findViewById(R.id.txtAddress);
         txtProblemDetail= (TextView) findViewById(R.id.txtProblemDetail);
+        txtPaymentDetails= (TextView) findViewById(R.id.txtPaymentDetails);
+
+        etFeedback= (EditText) findViewById(R.id.etFeedback);
+        tvThanks= (TextView) findViewById(R.id.tvThanks);
+        btnSubmit= (Button) findViewById(R.id.btnSubmit);
 
 ////        llAddWorker= (LinearLayout) findViewById(R.id.llAddWorker);
 //        llSelectDate= (LinearLayout) findViewById(R.id.llSelectDate);
@@ -98,11 +125,6 @@ public class HistoryRequestDetailActivity extends AppCompatActivity {
                 startActivity(callIntent);
             }
         });
-
-
-
-
-
 
         try {
 
@@ -150,11 +172,32 @@ public class HistoryRequestDetailActivity extends AppCompatActivity {
             txtCityPincode.setText(newRequestDetailModels.get(selectedItemPosition).city + ", " + newRequestDetailModels.get(selectedItemPosition).pincode);
             txtState.setText(newRequestDetailModels.get(selectedItemPosition).state);
 
+            txtPaymentDetails.setText("Transaction ID:- "+newRequestDetailModels.get(selectedItemPosition).transaction_id+"\n"+
+                    "Transaction Amount:- ₹ "+ newRequestDetailModels.get(selectedItemPosition).transaction_amount);
 
         } catch (Exception e) {
             e.printStackTrace();
         }
         setToolbar();
+
+
+        if(newRequestDetailModels.get(selectedItemPosition).feedback_given.equalsIgnoreCase("0")){
+            etFeedback.setVisibility(View.VISIBLE);
+            tvThanks.setVisibility(View.GONE);
+            btnSubmit.setVisibility(View.VISIBLE);
+            btnSubmit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    doPostNetworkOperation();
+                }
+            });
+        }else{
+            etFeedback.setVisibility(View.GONE);
+            tvThanks.setVisibility(View.VISIBLE);
+            btnSubmit.setVisibility(View.GONE);
+        }
+
+
     }
     private void setToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -168,6 +211,67 @@ public class HistoryRequestDetailActivity extends AppCompatActivity {
                     finish();
                 }
             });
+        }
+    }
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
+    }
+
+    private void doPostNetworkOperation() {
+
+
+        if (isNetworkConnected()) {
+
+            final ProgressDialog progressDialog = new ProgressDialog(HistoryRequestDetailActivity.this);
+            progressDialog.setMessage("submitting.....");
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+
+            JSONObject requestObject = new JSONObject();
+
+            try {
+                requestObject.put("order_id", newRequestDetailModels.get(selectedItemPosition).order_id);
+                requestObject.put("feedback", etFeedback.getText().toString());
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            new PostServiceCall(AppConstants.FEEDBACK, requestObject) {
+                @Override
+                public void response(String response) {
+                    Log.e("response", response);
+                    progressDialog.dismiss();
+
+                    StatusModel registrationDetailModel = new GsonBuilder().create().fromJson(response, StatusModel.class);
+
+                    if (registrationDetailModel.status.equalsIgnoreCase("1")) {
+                        Toast.makeText(HistoryRequestDetailActivity.this, registrationDetailModel.msg+"", Toast.LENGTH_SHORT).show();
+                        finish();
+
+                    } else {
+                        Toast.makeText(HistoryRequestDetailActivity.this, registrationDetailModel.msg+"", Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+
+                }
+
+                @Override
+                public void error(String error) {
+                    Log.e("response", error.toString());
+                    progressDialog.dismiss();
+                }
+
+
+            }.call();
+
+        } else {
+            Toast.makeText(HistoryRequestDetailActivity.this, "No internet connection available...", Toast.LENGTH_SHORT).show();
         }
     }
 

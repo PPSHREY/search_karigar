@@ -24,11 +24,9 @@ import android.widget.Toast;
 import com.google.gson.GsonBuilder;
 import com.scoutlabour.R;
 import com.scoutlabour.activities.HistoryRequestDetailActivity;
-import com.scoutlabour.activities.MyAddressActivity;
 import com.scoutlabour.custom.AppConstants;
 import com.scoutlabour.custom.PostServiceCall;
 import com.scoutlabour.custom.PrefUtils;
-import com.scoutlabour.custom.RVEmptyObserver;
 import com.scoutlabour.model.NewRequestDetailListModel;
 import com.scoutlabour.model.NewRequestDetailModel;
 
@@ -58,13 +56,17 @@ public class OrdersHistoryFragment extends Fragment {
         // Required empty public constructor
     }
 
-
+    @Override
+    public void onResume() {
+        super.onResume();
+        doPostNetworkOperation();
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View convertView= inflater.inflate(R.layout.fragment_orders_history, container, false);
+        View convertView= inflater.inflate(R.layout.fragment_orders_history_user, container, false);
 
         recyclerViewRequest = (RecyclerView) convertView.findViewById(R.id.recyclerViewRequest);
         recyclerViewRequest.setHasFixedSize(true);
@@ -146,11 +148,11 @@ public class OrdersHistoryFragment extends Fragment {
                     newRequestDetailListModel = new GsonBuilder().create().fromJson(response, NewRequestDetailListModel.class);
                     newRequestDetailModels = newRequestDetailListModel.newRequestDetailModelArrayList;
 
+
                     customAdapter = new CustomAdapter(getActivity(), newRequestDetailModels);
                     recyclerViewRequest.setAdapter(customAdapter); // set the Adapter to RecyclerView
                     // set the emptyView in recycleview
-                    customAdapter.registerAdapterDataObserver(new RVEmptyObserver(recyclerViewRequest, emptyView));
-
+//                    customAdapter.registerAdapterDataObserver(new RVEmptyObserver(recyclerViewRequest, emptyView));
 
 
 
@@ -188,7 +190,7 @@ public class OrdersHistoryFragment extends Fragment {
         @Override
         public CustomAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             // infalte the item_dashboard Layout
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.requests_item_list, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.requests_item_list_user, parent, false);
 
             // set the view's size, margins, paddings and layout parameters
             CustomAdapter.MyViewHolder vh = new CustomAdapter.MyViewHolder(v); // pass the view to View Holder

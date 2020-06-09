@@ -23,12 +23,10 @@ import android.widget.Toast;
 
 import com.google.gson.GsonBuilder;
 import com.scoutlabour.R;
-import com.scoutlabour.activities.HistoryRequestDetailActivity;
 import com.scoutlabour.activities.InProgressRequestActivity;
 import com.scoutlabour.custom.AppConstants;
 import com.scoutlabour.custom.PostServiceCall;
 import com.scoutlabour.custom.PrefUtils;
-import com.scoutlabour.custom.RVEmptyObserver;
 import com.scoutlabour.model.NewRequestDetailListModel;
 import com.scoutlabour.model.NewRequestDetailModel;
 
@@ -64,7 +62,7 @@ public class OrdersInProgressFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         
-        View convertView= inflater.inflate(R.layout.fragment_orders_in_progress, container, false);
+        View convertView= inflater.inflate(R.layout.fragment_orders_in_progress_user, container, false);
 
         recyclerViewRequest = (RecyclerView) convertView.findViewById(R.id.recyclerViewRequest);
         recyclerViewRequest.setHasFixedSize(true);
@@ -101,6 +99,13 @@ public class OrdersInProgressFragment extends Fragment {
 
         return convertView;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        doPostNetworkOperation();
+    }
+
     private boolean isNetworkConnected() {
         ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -147,12 +152,11 @@ public class OrdersInProgressFragment extends Fragment {
                     newRequestDetailListModel = new GsonBuilder().create().fromJson(response, NewRequestDetailListModel.class);
                     newRequestDetailModels = newRequestDetailListModel.newRequestDetailModelArrayList;
 
+
                     customAdapter = new CustomAdapter(getActivity(), newRequestDetailModels);
                     recyclerViewRequest.setAdapter(customAdapter); // set the Adapter to RecyclerView
                     // set the emptyView in recycleview
-                    customAdapter.registerAdapterDataObserver(new RVEmptyObserver(recyclerViewRequest, emptyView));
-
-
+//                    customAdapter.registerAdapterDataObserver(new RVEmptyObserver(recyclerViewRequest, emptyView));
 
 
 
@@ -189,7 +193,7 @@ public class OrdersInProgressFragment extends Fragment {
         @Override
         public CustomAdapter.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             // infalte the item_dashboard Layout
-            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.requests_item_list, parent, false);
+            View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.requests_item_list_user, parent, false);
 
             // set the view's size, margins, paddings and layout parameters
             CustomAdapter.MyViewHolder vh = new CustomAdapter.MyViewHolder(v); // pass the view to View Holder
@@ -337,5 +341,4 @@ public class OrdersInProgressFragment extends Fragment {
             }
         }
     }
-
 }

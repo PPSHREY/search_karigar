@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <!--<item-->
-        <!--android:id="@id/action_search_services"-->
-        <!--android:icon="@drawable/ic_action_search"-->
-        <!--android:visible="false"-->
-        <!--app:showAsAction="always" />-->
+    <item
+        android:title="Profile"
+        android:id="@+id/profile"
+        android:icon="@drawable/user_1"
+        android:visible="true"
+        app:showAsAction="always" />
 </menu>
